@@ -1,0 +1,22 @@
+LXI H,7963H
+SHLD 8090H
+LXI H,2697H
+SHLD 8092H
+
+LXI D,7963H   ; Load HL with the address of the first 16-bit data
+LHLD 8092H     ; Load DE with the second 16-bit data
+
+; Add using DAD instruction
+DAD D          ; Add DE to HL (16-bit addition)
+SHLD 8094H     ; Store the result at 8088H (sum using DAD)
+
+LHLD 8092H
+MOV A, L       ; Move lower byte of HL to accumulator
+ADD E         ; Add lower byte of DE to accumulator
+MOV L, A       ; Move result back to lower byte of HL
+MOV A, H       ; Move higher byte of HL to accumulator
+ADC D         ; Add higher byte of DE with carry to accumulator
+MOV H, A       ; Move result back to higher byte of HL
+SHLD 8094H     ; Store the result at 808AH (sum using ADC)
+
+HLT           ; Halt the program
