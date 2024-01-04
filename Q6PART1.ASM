@@ -1,0 +1,3 @@
+MVI A,39H
+XRI 0FFH
+HLT

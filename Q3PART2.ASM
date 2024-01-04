@@ -1,0 +1,9 @@
+LXI H, 9024H
+MOV A, M
+INX H
+
+ORA M
+
+STA 9026H
+
+HLT
